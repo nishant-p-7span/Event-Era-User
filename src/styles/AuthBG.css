@@ -1,0 +1,37 @@
+.authBg{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#bg-parabola{
+    position: absolute;
+    height: 600px;
+    top: 113px;
+    left: -50px;
+    z-index: -100;
+}
+
+#bg-human{
+    z-index: -99;
+    position: absolute;
+    height: 314px;
+    bottom:60px;
+    left: 54px;
+}
+
+#bg-lamp{
+    z-index: -99;
+    position: absolute;
+    height: 170px;
+    top: 129.2px;
+    left: 44px;
+}
+
+#bg-plant{
+    position: absolute;
+    height: 500px;
+    bottom: 0px;
+    right: 0px;
+}
