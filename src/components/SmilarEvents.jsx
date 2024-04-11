@@ -22,7 +22,7 @@ const SmilarEvents = () => {
   }, []);
   return (
     <div className="flex w-full  gap-y-8 flex-wrap  no-scrollbar mt-8">
-       {events.slice(0, 4).map((event, index) => (
+       {events && events.slice(0, 4).map((event, index) => (
     <EventItem key={index} event={event} />
 ))}
   </div>
