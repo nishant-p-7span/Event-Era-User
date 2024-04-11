@@ -4,7 +4,7 @@ const testimonialsData = [
   {
     name: "Jacky Pout",
     imageSrc:
-      "https://images.mid-day.com/images/images/2023/apr/hema-april-eight_d.jpg",
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     altText: "Avatar Jacky",
     quote:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique, quaerat!",
@@ -12,7 +12,7 @@ const testimonialsData = [
   {
     name: "Damien Marley",
     imageSrc:
-      "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTLJXNoBYMtNxOGtxvbHuTHhjLvEwjx3PhWsZ_H7-ydWLvixfAV",
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     altText: "Avatar Damien Marley",
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, exercitationem.",
@@ -20,7 +20,7 @@ const testimonialsData = [
   {
     name: "John Doe",
     imageSrc:
-      "https://images.mid-day.com/images/images/2023/apr/hema-april-eight_d.jpg",
+      "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     altText: "Avatar John Doe",
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, laborum.",
@@ -28,7 +28,7 @@ const testimonialsData = [
   {
     name: "Jane Smith",
     imageSrc:
-      "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTLJXNoBYMtNxOGtxvbHuTHhjLvEwjx3PhWsZ_H7-ydWLvixfAV",
+      "https://images.pexels.com/photos/775358/pexels-photo-775358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     altText: "Avatar Jane Smith",
     quote:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, aperiam.",

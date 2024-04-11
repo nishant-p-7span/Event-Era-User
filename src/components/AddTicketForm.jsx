@@ -24,6 +24,13 @@ const AddTicketForm = ({ isBlock, event }) => {
 
   const handleTicketBooking = () => {
     const email = localStorage.getItem("email");
+    if(!email){
+     let question =  confirm("You have to login first in order to book the ticket");
+     if(question) navigate("/login");
+     else{
+      return;
+     }
+    }
     console.log(event._id, email, totalAmount, ticketCount);
 
     function generateRandomPaymentId() {
@@ -55,7 +62,7 @@ const AddTicketForm = ({ isBlock, event }) => {
         localStorage.setItem("bookingData",JSON.stringify(response.data));
         navigate("/downloadticket")
         isBlock(false);
-        alert(`your ${ticketCount} tickets has booked`);
+        // alert(`your ${ticketCount} tickets has booked`);
         setResponseData(response.data); // Set response data here
         
       })

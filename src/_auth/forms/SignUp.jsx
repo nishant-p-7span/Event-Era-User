@@ -1,14 +1,12 @@
-// import axios from "axios";
-import React, { useState } from "react";
+import  { useState } from "react";
 import axios from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
-import { IoCall } from "react-icons/io5";
 import { PiLockFill } from "react-icons/pi";
 import { FaEyeSlash } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
-const SignUp = ({ handleAccount }) => {
+const SignUp = () => {
   const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
@@ -18,6 +16,8 @@ const SignUp = ({ handleAccount }) => {
     cpassword: "",
   });
 
+  const [error, setError] = useState(""); // State for error message
+
   const handleFormInput = (e) => {
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
@@ -25,29 +25,32 @@ const SignUp = ({ handleAccount }) => {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
-      console.error("Password and Confirm Password do not match.");
+      setError("Password and Confirm Password do not match.");
       return;
     }
-    localStorage.setItem("email", credentials.email);
+    if (credentials.password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
     try {
-      axios
-        .post("/auth/register", {
-          user_name: credentials.userName,
-          user_email: credentials.email,
-          user_password: credentials.password,
-          isuservendor: false,
-        })
-        .then((response) => {
-          console.log(response);
-          localStorage.setItem("userId", response.data.userId);
-          navigate(location.state?.from || "/");
-        })
-        .catch((err) => console.log(err));
+      const response = await axios.post("/auth/register", {
+        user_name: credentials.userName,
+        user_email: credentials.email,
+        user_password: credentials.password,
+        isuservendor: false,
+      });
+      localStorage.setItem("email", credentials.email);
+      localStorage.setItem("personId", response.data.userId);
+      navigate(location.state?.from || "/");
     } catch (err) {
-      console.log("Err signing up", err);
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("An unexpected error occurred. Please try again later.");
+      }
     }
   };
 
@@ -92,7 +95,7 @@ const SignUp = ({ handleAccount }) => {
                 required
               />
             </div>
-            <FaEyeSlash />
+            {/* <FaEyeSlash /> */}
           </div>
           <div>
             <div className="flex items-center">
@@ -106,9 +109,9 @@ const SignUp = ({ handleAccount }) => {
                 required
               />
             </div>
-            <FaEyeSlash />
+            {/* <FaEyeSlash /> */}
           </div>
-          {/* <h5 id="forgot-password">Forgot Password?</h5> */}
+          {error && <p className="text-red-500 text-sm font-normal">{error}</p>} {/* Display error message */}
           <button className="submit-button" type="submit">
             Sign Up
           </button>

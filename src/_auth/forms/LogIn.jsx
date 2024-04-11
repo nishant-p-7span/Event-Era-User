@@ -6,7 +6,7 @@ import { IoCall } from "react-icons/io5";
 import { PiLockFill } from "react-icons/pi";
 import { MdEmail } from "react-icons/md";
 
-const LogIn = ({ handleAccount, haveAccount }) => {
+const LogIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,6 +15,8 @@ const LogIn = ({ handleAccount, haveAccount }) => {
     password: "",
   });
 
+  const [error, setError] = useState(""); // State for error message
+
   const handleFormInput = (e) => {
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
@@ -22,25 +24,26 @@ const LogIn = ({ handleAccount, haveAccount }) => {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      axios
-        .post("/auth/login/user", {
-          user_email: credentials.email,
-          user_password: credentials.password,
-        })
-        .then((response) => {
-          console.log(response);
-
-          localStorage.setItem("email", credentials.email);
-          localStorage.setItem("name", response.data.user_name);
-          localStorage.setItem("userId", response.data.userId);
-          navigate(location.state?.from || "/");
-          window.scrollTo(0, 0);
-        });
+      const response = await axios.post("/auth/login/user", {
+        user_email: credentials.email,
+        user_password: credentials.password,
+      });
+      if (response.status === 200) {
+        localStorage.setItem("email", credentials.email);
+        localStorage.setItem("name", response.data.user_name);
+        localStorage.setItem("personId", response.data.userId);
+        navigate(location.state?.from || "/");
+        window.scrollTo(0, 0);
+      }
     } catch (err) {
-      console.log("Err signing up", err);
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("An unexpected error occurred. Please try again later.");
+      }
     }
   };
 
@@ -83,6 +86,7 @@ const LogIn = ({ handleAccount, haveAccount }) => {
           >
             Forgot Password?
           </Link>
+          {error && <p className="text-red-500 text-sm font-normal">{error}</p>} {/* Display error message */}
           <button className="submit-button" type="submit">
             Login
           </button>

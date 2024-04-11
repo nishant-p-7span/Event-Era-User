@@ -12,182 +12,20 @@ import {
 
 const AllEvents = () => {
   const allCategories = [
-    { id: 2, name: "music" },
-    { id: 3, name: "dance" },
-    { id: 4, name: "tech" },
-    { id: 5, name: "theater" },
-    { id: 6, name: "festivals" },
-    { id: 7, name: "sports" },
-    { id: 8, name: "parties" },
+    { id: 2, name: "Music" },
+    { id: 3, name: "Dance" },
+    { id: 4, name: "Tech" },
+    { id: 5, name: "Theater" },
+    { id: 6, name: "Festivals" },
+    { id: 7, name: "Sports" },
+    { id: 8, name: "Parties" },
   ];
-  // const events = [
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1708112292874-1562bdd92f1e?q=80&w=3011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1707988179922-bd01b4dcb826?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1705785994423-88b5fb81b297?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1705421624750-f9ebd095f53a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1682695795557-17447f921f79?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1708112292874-1562bdd92f1e?q=80&w=3011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1707988179922-bd01b4dcb826?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1705785994423-88b5fb81b297?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1708112292874-1562bdd92f1e?q=80&w=3011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1707988179922-bd01b4dcb826?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1705785994423-88b5fb81b297?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1705421624750-f9ebd095f53a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1682695795557-17447f921f79?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1708112292874-1562bdd92f1e?q=80&w=3011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://plus.unsplash.com/premium_photo-1707988179922-bd01b4dcb826?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  //   {
-  //     title: "Live Singing Concert",
-  //     img: "https://images.unsplash.com/photo-1705785994423-88b5fb81b297?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //     date: "3rd",
-  //     month: "Feb",
-  //     startTime: "6:00 PM",
-  //     EndTIme: "9:00 PM",
-  //     location: "H.K hall, Naranpura, Ahmedabad",
-  //     price: 2000,
-  //   },
-  // ];
+  
   const [allEvents, setAllEvents] = useState([]);
   const [categories, setCategories] = useState(allCategories);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  // console.log(useParams());
   const category = searchParams.get("category");
 
   console.log(category);
@@ -226,8 +64,6 @@ const AllEvents = () => {
   }, [searchParams, categories]);
 
   const handleGoBack = () => {
-    // handle the click event on the "Go back" button.
-    // Implement your go back logic here
     window.history.back();
   };
   return (

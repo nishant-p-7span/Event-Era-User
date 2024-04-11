@@ -6,6 +6,8 @@ const AttendedEvents = () => {
   const email = localStorage.getItem("email");
   const [bookedEvents, setBookedEvents] = useState([]);
 
+  const url = "https://api.theeventera.live/";
+
   useEffect(() => {
     try {
       axios
@@ -74,27 +76,34 @@ const AttendedEvents = () => {
               className="flex flex-col w-3/4 lg:flex-row mb-6 border p-6 rounded-xl"
             >
               <div className="w-1/4 h-44   me-14">
-                {/* You can add any content here if needed */}
+                <img
+                  className="w-full object-cover"
+                  src={`${url}${booking.event_id.poster_img}`}
+                  alt=""
+                />
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-bold pb-7">
-                  {booking.event_id.event_name}
+                  {booking.event_id?.event_name}
                 </h3>
                 <span className="py-2 mb-2 flex text-lg items-start">{`${new Date(
-                  booking.event_id.event_date
+                  booking.event_id?.event_date
                 ).toLocaleDateString()} | ${
-                  booking.event_id.event_time
+                  booking.event_id?.event_time
                 }`}</span>
                 <span className="py-2 mb-2 flex text-lg">
-                  {booking.event_id.city}
+                  {booking.event_id?.city}
                 </span>
                 <div className="flex justify-between flex-col lg:flex-row">
                   <span className="flex py-2 pr-64 mb-2 text-xl">
-                    ₹{" " + booking.total_amount}
+                    ₹{" " + booking?.total_amount}
                   </span>
-                  <button className="flex rounded-full border-2 items-center py-3 px-4 text-lg">
+                  <Link
+                    className="flex rounded-full border-2 items-center py-3 px-4 text-lg"
+                    to={`/events/bookings/${booking._id}`}
+                  >
                     Download Ticket
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

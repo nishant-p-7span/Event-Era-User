@@ -24,6 +24,9 @@ const UserProfile = () => {
     }
   }, [editProfile]);
 
+
+  console.log(isVendor);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

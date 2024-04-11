@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
@@ -13,32 +13,69 @@ const ForgotPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [newCPassword, setNewCPassword] = useState("");
   const [step, setStep] = useState(1); // Step 1: Request OTP
+  const [loading, setLoading] = useState(false); // Loading state
+  const [resendDisabled, setResendDisabled] = useState(false); // Disable resend button
+  const [timer, setTimer] = useState(60); // Countdown timer in seconds
+
+  useEffect(() => {
+    let interval;
+    if (timer > 0 && resendDisabled) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setResendDisabled(false);
+      setTimer(60);
+    }
+    return () => clearInterval(interval);
+  }, [timer, resendDisabled]);
+
+  const handleResendOtp = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post("/auth/resend-otp", {
+        user_email: email,
+      });
+      if (response.data.message === "OTP sent to your email") {
+        setResendDisabled(true);
+      }
+    } catch (error) {
+      console.error("Error resending OTP:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Step 1: Request OTP
+      setLoading(true);
       const response = await axios.post("/auth/forgot-password", {
         user_email: email,
       });
       if (response.data.message === "OTP sent to your email") {
-        setStep(2); // Move to Step 2: Verify OTP
+        alert("The OTP has been sent to your email")
+        setStep(2);
+        setResendDisabled(true);
       }
     } catch (error) {
       console.error("Error requesting OTP:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleOtpVerification = async (e) => {
     e.preventDefault();
     try {
-      // Step 2: Verify OTP
       const response = await axios.post("/auth/verify-otp", {
         user_email: email,
         otp: parseInt(otp),
       });
       if (response.data.message === "OTP verified successfully") {
-        setStep(3); // Move to Step 3: Reset Password
+        setStep(3);
+      } else {
+        return alert("Incorrect OTP");
       }
     } catch (error) {
       console.error("Error verifying OTP:", error);
@@ -48,16 +85,15 @@ const ForgotPassword = () => {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     if (newPassword !== newCPassword) {
-      console.error("Password and Confirm Password do not match.");
+      alert("Password and Confirm Password do not match.");
       return;
     }
     try {
-      // Step 3: Reset Password
       await axios.post("/auth/reset-password", {
         user_email: email,
         new_password: newPassword,
       });
-      // Redirect to login page or homepage
+      alert("Your password has been reset!")
       navigate("/login");
     } catch (error) {
       console.error("Error resetting password:", error);
@@ -85,8 +121,18 @@ const ForgotPassword = () => {
                 />
               </div>
               <button type="submit" className="submit-button  text-nowrap">
-                Confirm
+                {loading ? "Loading..." : "Confirm"}
               </button>
+              {resendDisabled && (
+                <button
+                  type="button"
+                  className="resend-button text-nowrap"
+                  onClick={handleResendOtp}
+                  disabled={resendDisabled}
+                >
+                  Resend OTP ({timer})
+                </button>
+              )}
             </form>
           </div>
         )}
@@ -107,6 +153,14 @@ const ForgotPassword = () => {
 
               <button type="submit" className="submit-button  text-nowrap">
                 Verify OTP
+              </button>
+              <button
+                type="button"
+                className="resend-button text-nowrap"
+                onClick={handleResendOtp}
+                disabled={resendDisabled}
+              >
+                Resend OTP ({timer})
               </button>
             </form>
           </div>

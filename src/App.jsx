@@ -9,6 +9,8 @@ import SignUp from "./_auth/forms/SignUp";
 import LogIn from "./_auth/forms/LogIn";
 import RootLayout from "./_root/RootLayout";
 import DownloadTicketPage from "./_root/pages/DownloadTicketPage";
+import VendorHome from "./_root/pages/VendorHome";
+import Ticket from "./_root/pages/Ticket";
 
 const App = () => {
   return (
@@ -25,8 +27,8 @@ const App = () => {
           <Route path="/events" element={<AllEvents />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/downloadticket" element={<DownloadTicketPage />} />
-
-          
+          {/* <Route path="/vendor" element={<VendorHome/>}/> */}
+          <Route path="/events/bookings/:id" element = {<Ticket/>}/>
         </Route>
       </Routes>
     </>

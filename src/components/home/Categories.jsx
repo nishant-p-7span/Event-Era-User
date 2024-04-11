@@ -9,31 +9,31 @@ const Categories = () => {
   const [categories, setCategories] = useState([
     {
       icon: <FaMusic />,
-      name: "music",
+      name: "Music",
     },
     {
       icon: <FaTheaterMasks />,
-      name: "theater",
+      name: "Theater",
     },
     {
       icon: <FaPersonHarassing />,
-      name: "dance",
+      name: "Dance",
     },
     {
       icon: <LuPartyPopper />,
-      name: "parties",
+      name: "Parties",
     },
     {
       icon: <MdFestival />,
-      name: "festivals",
+      name: "Festivals",
     },
     {
       icon: <MdSportsMartialArts />,
-      name: "sports",
+      name: "Sports",
     },
     {
       icon: <FaLaptop />,
-      name: "tech",
+      name: "Tech",
     },
   ]);
 

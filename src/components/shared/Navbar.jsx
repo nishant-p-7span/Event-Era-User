@@ -10,7 +10,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const email = localStorage.getItem("email");
-  const id = localStorage.getItem("userId");
+  const id = localStorage.getItem("personId");
 
   return (
     <header className=" w-full h-auto   px-7 py-6 sm:items-center bg-primary-100/30 relative z-10">
@@ -32,10 +32,10 @@ const Navbar = () => {
           )}
         </nav>
         <div className="hidden md:flex md:items-center  font-normal">
-          <button className="group border  px-7 py-3 text-primary-500 flex items-center border-primary-400 text-base rounded-3xl mr-4 transition">
+          <a href="https://vendor.theeventera.live" className="group border  px-7 py-3 text-primary-500 flex items-center border-primary-400 cursor-pointer text-base rounded-3xl mr-4 transition">
             <FaPlus className="group-hover:text-primary-500 mr-3 " />
             Create Event
-          </button>
+          </a>
           {!email ? (
             <button
               className="text-white bg-primary-500 px-16 py-3 text-base rounded-3xl transition font-medium"

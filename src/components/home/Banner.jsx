@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { RxDotFilled } from "react-icons/rx";
+import axios from "axios";
 
 const Banner = () => {
-  const slides = [
-    {
-      url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
+  const [slides, setSlides] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [currentIndex, setCurrentIndex] = useState(2);
+  useEffect(() => {
+    const fetchSliderData = async () => {
+      try {
+        const response = await axios.get("https://api.theeventera.live/api/sliders/allslider");
+        setSlides(response.data);
+      } catch (error) {
+        console.error("Error fetching slider data:", error);
+      }
+    };
+
+    fetchSliderData();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,17 +25,6 @@ const Banner = () => {
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  // const previSlide = () => {
-  //   const isFirstSlide = currentIndex === 0;
-  //   const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-  //   setCurrentIndex(newIndex);
-  // };
-
-  // const nextSlide = () => {
-  //   const isLastSlide = currentIndex === slides.length - 1;
-  //   const newIndex = isLastSlide ? 0 : currentIndex + 1;
-  //   setCurrentIndex(newIndex);
-  // };
   return (
     <div className="h-96 w-full m-auto relative group overflow-hidden container">
       <div
@@ -45,7 +35,7 @@ const Banner = () => {
           <div
             key={slideIndex}
             style={{
-              backgroundImage: `url(${slide.url})`,
+              backgroundImage: `url(https://api.theeventera.live/${slide.imageUrl.replace(/\\/g, '/')})`,
               width: "100%",
               flex: "0 0 auto",
             }}
@@ -55,20 +45,17 @@ const Banner = () => {
       </div>
       <div className="flex absolute bottom-4 text-white inset-x-0 justify-center py-1">
         {slides.map((slide, slideIndex) => (
-          <div key={slideIndex} className="text-3xl cursor-pointer ">
-            <RxDotFilled
-              // size={30}
-              onClick={() => setCurrentIndex(slideIndex)}
-              className={`${
-                currentIndex === slideIndex
-                  ? "text-primary-500 transform-1"
-                  : "text-white/50"
-              }`}
-            />
-          </div>
+          <div
+            key={slideIndex}
+            onClick={() => setCurrentIndex(slideIndex)}
+            className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
+              currentIndex === slideIndex ? "bg-primary-500" : "bg-white/50"
+            }`}
+          ></div>
         ))}
       </div>
     </div>
   );
 };
+
 export default Banner;

@@ -1,14 +1,15 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function RightSlideOver({ open, setOpen }) {
-  const id = localStorage.getItem("userId");
+  const id = localStorage.getItem("personId");
+  const navigate = useNavigate();
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -17,6 +18,10 @@ export default function RightSlideOver({ open, setOpen }) {
     id && { name: "Profile", href: `/profile/${id}` },
     id && { name: "Bookings", href: `/profile/attendedevents` },
   ];
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   const { pathname } = useLocation();
   return (
@@ -85,7 +90,7 @@ export default function RightSlideOver({ open, setOpen }) {
                           })}
                         </ul>
                         {id && (
-                          <button className="bg-gray-50 text-primary-500 rounded-md p-2 pl-3 text-sm leading-6 font-semibold">
+                          <button className="bg-gray-50 text-primary-500 rounded-md p-2 pl-3 text-sm leading-6 font-semibold" onClick={logout}>
                             Logout
                           </button>
                         )}

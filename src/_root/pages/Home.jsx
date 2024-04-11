@@ -4,6 +4,8 @@ import Categories from "../../components/home/Categories";
 import EventsSection from "../../components/home/EventsSection";
 import Banner from "../../components/home/Banner";
 import Testimonials from "../../components/home/Testimonials";
+import Poll from "../../components/home/Poll";
+
 
 const Home = () => {
   return (
@@ -12,6 +14,8 @@ const Home = () => {
       <Categories />
       <EventsSection />
       <Testimonials />
+      <Poll />
+
     </div>
   );
 };

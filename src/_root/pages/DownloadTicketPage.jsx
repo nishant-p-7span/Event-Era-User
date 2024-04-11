@@ -2,10 +2,9 @@ import React, { useEffect} from "react";
 // import { useLocation } from "react-router-dom";
 import { FaChevronLeft, FaCheckCircle } from "react-icons/fa"; // Importing Font Awesome icons
 import Ticket from "./Ticket"; // Import the Ticket component
+import SmilarEvents from "../../components/SmilarEvents";
 
-const SimilarEventsSection = () => {
-  // SimilarEventsSection component code...
-};
+
 
 const DownloadTicketPage = () => {
   // Handle the print ticket button click event
@@ -13,10 +12,13 @@ const DownloadTicketPage = () => {
     // Implement your logic here to print the ticket
     alert("Print ticket");
   };
+  
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const data = localStorage.getItem("bookingData");
-    console.log(JSON.parse(data));
+    // console.log(JSON.parse(data));
    
   },[])
   
@@ -54,8 +56,8 @@ const DownloadTicketPage = () => {
 
       {/* Similar Events Section */}
       <div className="mb-6 ml-4">
-        <h2 className="text-2xl font-semibold">Similar Events</h2>
-        <SimilarEventsSection />
+        <h2 className="text-2xl font-semibold">More Events</h2>
+        <SmilarEvents />
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 export default function Profile() {
   const navigate = useNavigate();
   const storedEmail = localStorage.getItem("email");
-  const id = localStorage.getItem("userId");
+  const id = localStorage.getItem("personId");
   const [token, setToken] = useState(storedEmail);
 
   const location = useLocation();
